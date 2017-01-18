@@ -1,5 +1,8 @@
 package org.blacksun.pediredla;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Created by Pediredla on 11/24/16.
  */
@@ -59,5 +62,54 @@ public class NumberOfIslands {
 
         return i;
     }
+
+    public int numIslandsBfs(char[][] grid) {
+        int count = 0;
+        if (grid.length == 0)
+            return 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1') {
+                    ++count;
+                    bfs(new XYCoordinate(i, j), grid);
+                }
+            }
+        }
+        return count;
+    }
+
+    private void bfs(XYCoordinate xy, char[][] grid) {
+        Queue<XYCoordinate> que = new LinkedList();
+        que.offer(xy);
+        while (!que.isEmpty()) {
+            XYCoordinate curr = que.poll();
+            if (grid[curr.x][curr.y] != '1')
+                continue;
+            grid[curr.x][curr.y] = 'X';
+            if (curr.x > 0 && grid[curr.x - 1][curr.y] == '1') {
+                que.offer(new XYCoordinate(curr.x - 1, curr.y));
+            }
+            if (curr.x < grid.length - 1 && grid[curr.x + 1][curr.y] == '1') {
+                que.offer(new XYCoordinate(curr.x + 1, curr.y));
+            }
+            if (curr.y > 0 && grid[curr.x][curr.y - 1] == '1') {
+                que.offer(new XYCoordinate(curr.x, curr.y - 1));
+            }
+            if (curr.y < grid[0].length - 1 && grid[curr.x][curr.y + 1] == '1') {
+                que.offer(new XYCoordinate(curr.x, curr.y + 1));
+            }
+        }
+    }
+
+    class XYCoordinate {
+        int x;
+        int y;
+
+        XYCoordinate(int row, int col) {
+            this.x = row;
+            this.y = col;
+        }
+    }
 }
+
 

@@ -147,7 +147,10 @@ public class SortingAlgorithms {
     }
 
     public static void heapSort(int[] arr) {
-        int n = arr.length-1;
+        heapSortHelper(arr, arr.length-1);
+    }
+
+    private static void heapSortHelper(int[] arr, int n){
         buildheap(arr, n);
         for(int i=n;i>0;i--){
             swap(arr, 0, i);
