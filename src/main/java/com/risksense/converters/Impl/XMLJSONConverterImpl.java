@@ -18,6 +18,9 @@ import java.util.Map;
 public class XMLJSONConverterImpl implements XMLJSONConverterI {
 
     /**
+     * XML implementation of the converter
+     *
+     *
      * @param json {@link java.io.File} from which to read JSON data.
      * @param xml  {@link java.io.File} from which to write XML data.
      * @throws IOException
