@@ -1,6 +1,7 @@
 {
   "organization" : {
     "name" : "RiskSense",
+    "isListed": false,
     "type" : "Inc",
     "building_number" : 4,
     "floating" : -17.4,
